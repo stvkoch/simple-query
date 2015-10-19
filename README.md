@@ -1,5 +1,7 @@
 # Simple SQL Builder
 
+![Travis-ci](https://travis-ci.org/stvkoch/simple-query.svg)
+
 ## See on examples:
 
 ### Simple SELECT query
