@@ -5,11 +5,12 @@
 ### Simple SELECT query
 
     $model = \Simple\Model(['table'=>'superA', 'alias'=>'A']);
-    $query = (\Simple\Query($model))->where($model->field('username', 'superUser');
+    $query = (new \Simple\Query($model))->where($model->field('username', 'superUser');
 
     echo $query->sqlSelect();
     // SELECT A.* FROM superA AS A WHERE A.username = (?)
-    # use 'bindParameters' propriety to bind parameters in your 
+
+    # use 'bindParameters' propriety to bind parameters in your database statement
     $query->bindParameters
     # ['superUser']
 
@@ -129,6 +130,14 @@ return alias table
     $query->equal($model->field('status'), 1);
 
 
+    # IS NULL
+    $query->where($model->field('age'), 'NULL', 'IS');
+
+    # IS NOT NULL
+    $query->where($model->field('age'), 'NULL', 'IS NOT');
+
+
+
 ### Group
 
     $query->group($model->pk());
@@ -146,12 +155,14 @@ return alias table
     $query = new \Simple\Query($modelA);
     $query->join('left', $modelB);
 
-    #example A.2
+    #example A.2. Allow join queries
     $modelA = new ModelA();
     $modelB = new ModelB();
     $query = new \Simple\Query($modelA);
     $query->join('left',
-        (new \Simple\Query($modelB))->equal($modelA->pk, $modelA->fk($modelB)->where('name', $paramName)
+        (new \Simple\Query($modelB))
+            ->equal($modelA->pk(), $modelA->fk($modelB))
+            ->where('name', $paramName)
     );
 
 ### Pagination or Limit
