@@ -4,6 +4,10 @@ namespace Simple;
 class Model {
     use Traits\Model;
 
+    protected $table = null;
+    protected $alias = null;
+    protected $pk = 'id';
+
     public function __construct($options = [])
     {
         if (isset($options['table'])) {
