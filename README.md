@@ -5,7 +5,7 @@
 ### Simple SELECT query
 
     $model = \Simple\Model(['table'=>'superA', 'alias'=>'A']);
-    $query = (new \Simple\Query($model))->where($model->field('username', 'superUser');
+    $query = (new \Simple\Query($model))->where($model->field('username'), 'superUser');
 
     echo $query->sqlSelect();
     // SELECT A.* FROM superA AS A WHERE A.username = (?)
