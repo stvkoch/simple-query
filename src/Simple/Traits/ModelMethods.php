@@ -1,15 +1,7 @@
 <?php
 namespace Simple\Traits;
 
-trait Model {
-
-    protected $table = null;
-    protected $alias = null;
-    protected $pk = 'id';
-
-    public function init($options = [])
-    {
-    }
+trait ModelMethods {
 
     public function alias($alias = null)
     {

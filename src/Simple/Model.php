@@ -2,7 +2,9 @@
 namespace Simple;
 
 class Model {
-    use Traits\Model;
+
+    use Traits\ModelProprieties;
+    use Traits\ModelMethods;
 
 
     public function __construct($options = [])
