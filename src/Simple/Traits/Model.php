@@ -7,6 +7,20 @@ trait Model {
     protected $alias = null;
     protected $pk = 'id';
 
+    public function init($options = [])
+    {
+        if (isset($options['table'])) {
+            $this->table = $options['table'];
+            $this->alias = $options['table'];
+        }
+        if ($options['alias']) {
+            $this->alias = $options['alias'];
+        }
+        if ($options['pk']) {
+            $this->pk = $options['pk'];
+        }
+
+    }
 
     public function alias($alias = null)
     {
