@@ -101,12 +101,14 @@ class Query implements QueryInterface {
             $page = 1;
         }
         $this->arrangements['LIMIT'] = [((int)$page-1)*$perPage, $perPage];
+        return $this;
     }
 
 
-    public function limit($limit, $offset)
+    public function limit()
     {
-         $this->arrangements['LIMIT'] = [$limit, $offset];
+         $this->arrangements['LIMIT'] = func_get_args();
+        return $this;
     }
 
     public function type($value)

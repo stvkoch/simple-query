@@ -130,5 +130,18 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(array(1,2), $query->bindParameters);
 
     }
+
+    public function testLimit()
+    {
+        $modelA = new \Simple\Model(['table'=>'superA', 'alias'=>'A']);
+        $incrementalQuery = 'SELECT A.* FROM superA AS A LIMIT 123';
+
+        $query = new \Simple\Query($modelA);
+        $query->select($modelA->field('*'))->limit(123);
+        $this->assertEquals($incrementalQuery, $query->sqlSelect());
+
+        $this->assertEquals($incrementalQuery, $query->sqlSelect());
+
+    }
 }
 

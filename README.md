@@ -29,6 +29,18 @@
     }
     ...
 
+
+## Why we not build onw string sql?
+
+Using SQL Builder you can:
+
+    - create powerful query without specific order.
+    - use bind values
+    - create easy subquery conditions using query object
+    - apply patterns to interprete request and build personal queries
+    - not dependent of ORMs
+
+
 ## About Model
 
 Model allow to separate table structures to avoid conflicts when you want to create more complex queries.
@@ -140,6 +152,39 @@ return alias table
     $query->where($model->field('age'), 'NULL', 'IS NOT');
 
 
+### Subquery condition
+
+    $modelLog = new \Simple\Model(['table'=>'logs']);
+    $modelProd = new \Simple\Model(['table'=>'product']);
+
+    $queryLog = new \Simple\Query($modelLog);
+    $queryLog->field($modelLog->fk($modelProd))
+        ->where('createAt BETWEEN (?) AND (?)', [$date1, $date2], 'RAW')
+        ->limit(10)
+        ->group($modelLog->fk($modelProd))
+        ->order($modelLog->field('createAt'));
+
+    $query = new \Simple\Query($modelProd);
+    $query->where($modelProd->field($modelProd->pk()), $queryLog, 'IN')
+        ->order($modelProd->field('name'))
+        ->limit(10);
+
+    #SELECT product.* FROM product WHERE product.id IN (SELECT logs.idProduct FROM logs WHERE createAt BETWEEN (?) AND (?) GROUP BY logs.idProduct ORDER BY logs.createAt ASC LIMIT 10) ORDER BY product.name ASC LIMIT 10
+
+
+
+### Where
+
+    $query->where($fieldName, $valueToBind, $function = '=', $operator = 'AND')
+
+We support conditions functions:
+
+    '='
+    'IS'
+    'IS NO'
+    'IN'
+    'NOT IN'
+    Query
 
 ### Group
 
