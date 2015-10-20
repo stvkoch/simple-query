@@ -175,16 +175,21 @@ return alias table
 
 ### Where
 
-    $query->where($fieldName, $valueToBind, $function = '=', $operator = 'AND')
+Add condition.
 
-We support conditions functions:
+    $query
+        ->where($fieldName, $valueToBind, $function = '=', $operator = 'AND')
+        ->where(...);
 
-    '='
+Support conditions functions:
+
+    '=','>','<','<=','>='
     'IS'
     'IS NO'
     'IN'
     'NOT IN'
-    Query
+    'RAW' (not apply function condition, you should provide complete condition)
+
 
 ### Group
 
@@ -263,7 +268,6 @@ You can bind your values this way:
 
 
 
-## Examples
 
 
 
