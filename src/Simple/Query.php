@@ -265,6 +265,16 @@ class Query implements QueryInterface {
                         $partCondition[] = sprintf('%s %s NULL', $condition['field'], $func );
                         continue;
                     }
+                    if ($func === 'RAW') {
+                        $partCondition[] = $condition['field'];
+                        $this->bindParameters = array_merge($this->bindParameters, $condition['value']);
+                        continue;
+                    }
+                    if (isset($condition['value']) && $condition['value'] instanceof self) {
+                        $partCondition[] = sprintf('%s %s (%s)', $condition['field'], $func, $condition['value']->sqlSelect());
+                        $this->bindParameters = array_merge($this->bindParameters, $condition['value']->bindParameters);
+                        continue;
+                    }
                     $partCondition[] = sprintf('%s %s (?)', $condition['field'], $func );
                     $this->bindParameters[] = $condition['value'];
                 }

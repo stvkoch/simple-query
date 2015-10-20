@@ -177,6 +177,27 @@ return alias table
     $query->limit(0, 10);
 
 
+### Build SQL SELECT
+
+    $query->sqlSelect();
+
+### Build SQL COUNT
+
+    $query->sqlCountSelect();
+
+
+### Build SQL UPDATE
+
+    $query->sqlUpdate();
+
+### Build SQL INSERT
+
+    $query->sqlInsert();
+
+### Buidl SQL DELETE
+
+    $query->sqlDelete();
+
 
 ### Bind Parameters
 
@@ -194,3 +215,11 @@ You can bind your values this way:
             $value
         );
     }
+
+
+
+## Examples
+
+
+
+

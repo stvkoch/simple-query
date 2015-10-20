@@ -108,5 +108,27 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
 
         //$this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.id=B.idSuperA',$query->sqlSelect());
     }
+
+
+    public function testSubQueries()
+    {
+        $modelA = new \Simple\Model(['table'=>'superA', 'alias'=>'A']);
+        $modelB = new \Simple\Model(['table'=>'log',    'alias'=>'B']);
+        $modelC = new \Simple\Model(['table'=>'megaC',  'alias'=>'C']);
+
+        $expectSql = 'SELECT A.* FROM superA AS A WHERE id IN (SELECT B.idSuperA FROM log AS B WHERE date BETWEEN (?) AND (?))';
+
+        $query = new \Simple\Query($modelA);
+        $query->select($modelA->field('*'));
+
+        $queryLogModelA = (new \Simple\Query($modelB))
+                ->select($modelB->fk($modelA))
+                ->where('date BETWEEN (?) AND (?)', [1, 2], 'RAW');
+
+        $query->where('id', $queryLogModelA, 'IN');
+        $this->assertEquals($expectSql, $query->sqlSelect());
+        $this->assertEquals(array(1,2), $query->bindParameters);
+
+    }
 }
 
