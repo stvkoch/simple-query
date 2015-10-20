@@ -29,7 +29,7 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($incrementalQuery, $query->sqlSelect());
 
 
-        $this->assertEquals( 'SELECT COUNT(*) AS count FROM ('.$incrementalQuery.') AS _counter', $query->sqlCountSelect());
+        $this->assertEquals( 'SELECT COUNT(*) AS count FROM ('.$incrementalQuery.') AS _countersuperA', $query->sqlCountSelect());
 
 
         $incrementalQuery = 'SELECT superA.* FROM superA WHERE superA.name LIKE (?) OR superA.surename LIKE (?)';
@@ -64,7 +64,7 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $queryPage->limit(0,150);
         $this->assertEquals('SELECT A.* FROM superA AS A LIMIT 0, 150', $queryPage->sqlSelect());
         
-        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT A.* FROM superA AS A) AS _counter', $queryPage->sqlCountSelect());
+        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT A.* FROM superA AS A) AS _countersuperA', $queryPage->sqlCountSelect());
 
 
         $incrementalQuery .= ' WHERE A.name = (?)';
