@@ -1,6 +1,6 @@
 {
-    "name": "simple/query",
-    "description": "Simple but powerfull query builder. See test folder to discovery how it's easy.",
+    "name": "stvkoch/simple-query",
+    "description": "Simple but powerfull query builder. Secury support subquery conditions.  See test folder to discovery how it's easy.",
     "require": {
         "php": "5.4"
     },
