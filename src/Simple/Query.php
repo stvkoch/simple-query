@@ -119,6 +119,19 @@ class Query implements QueryInterface {
         return $this->type['default'];
     }
 
+    public function sqlCountSelect()
+    {
+        $this->initMaker();
+        return trim(sprintf(
+            'SELECT COUNT(*) AS count FROM %s%s%s%s%s',
+                $this->makeTable($this->from),
+                $this->makeAlias($this->from),
+                $this->makeJoins(),
+                $this->makeConditions('WHERE'),
+                $this->makeGroup()
+        ));
+    }
+    
     public function sqlSelect()
     {
         $this->initMaker();
