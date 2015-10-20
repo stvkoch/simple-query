@@ -122,19 +122,20 @@ class Query implements QueryInterface {
     public function sqlCountSelect()
     {
         $this->initMaker();
-        return trim(sprintf('SELECT COUNT(*) AS count FROM (%s) AS _counter%s',
-                trim(sprintf('SELECT %s FROM %s%s%s%s%s')
+        $select = trim(sprintf('SELECT %s FROM %s%s%s%s%s',
                     implode(', ', array_keys($this->fields)),
                     $this->makeTable($this->from),
                     $this->makeAlias($this->from),
                     $this->makeJoins(),
                     $this->makeConditions('WHERE'),
                     $this->makeGroup()
-                )),
-                $this->makeTable($this->from)
+                ));
+        return trim(sprintf('SELECT COUNT(*) AS count FROM (%s) AS _counter%s',
+            $select,
+            $this->makeTable($this->from)
         ));
     }
-    
+
     public function sqlSelect()
     {
         $this->initMaker();
