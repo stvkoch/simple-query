@@ -1,7 +1,8 @@
 <?php
 namespace Simple\Traits;
 
-trait ModelMethods {
+trait ModelMethods
+{
 
     public function alias($alias = null)
     {
@@ -9,7 +10,7 @@ trait ModelMethods {
             $this->alias = $alias;
         }
 
-        if(is_null($this->alias)){
+        if (is_null($this->alias)) {
             return $this->table();
         }
 
@@ -19,7 +20,7 @@ trait ModelMethods {
     public function table($table = null)
     {
         if ($table) {
-            return $this->table;
+            $this->table = $table;
         }
         return $this->table;
     }
@@ -29,14 +30,14 @@ trait ModelMethods {
      */
     public function pk($pk = null)
     {
-        if($pk) {
+        if ($pk) {
             $this->pk = $pk;
         }
         return $this->pk;
     }
 
     /**
-     * convention how this model is represent as foreign key
+     * convention how this model is represent as foreign key of modelFk
      * idTablename
      */
     public function fk($modelFk)
@@ -51,4 +52,3 @@ trait ModelMethods {
         return $this->alias().'.'.$field;
     }
 }
-

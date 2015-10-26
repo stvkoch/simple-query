@@ -8,37 +8,42 @@
 ### Simple SELECT query
 
     $model = \Simple\Model(['table'=>'superA', 'alias'=>'A']);
-    $query = (new \Simple\Query($model))->where($model->field('username'), 'superUser');
+
+    $query = (new \Simple\Query($model))
+        ->where($model->field('username'), 'superUser');
 
     echo $query->sqlSelect();
     // SELECT A.* FROM superA AS A WHERE A.username = (?)
 
-    # use 'bindParameters' propriety to bind parameters in your database statement
+    // use 'bindParameters' propriety to bind parameters in your database statement
     $query->bindParameters
-    # ['superUser']
+    // ['superUser']
 
 
-    # more real example
+    // more real example
     $supossed_mysql_stmt = $con->prepare($query->sqlSelect());
-    # you can bind_param this way
+    // you can bind_param this way
     foreach ($query->bindParameters as $value) {
         $supossed_mysql_stmt->bind_param(
-            $query->type($value),#return 'i', 'd' or 's'
+            $query->type($value), // return 'i', 'd' or 's'
             $value
         );
     }
     ...
 
 
+
 ## Why we not build onw string sql?
 
 Using SQL Builder you can:
 
+    - increase security, avoid sql injection.
     - create powerful query without specific order.
-    - use bind values
-    - create easy subquery conditions using query object
-    - apply patterns to interprete request and build personal queries
-    - not dependent of ORMs
+    - use bind values.
+    - create easy subquery conditions using query object.
+    - apply patterns to interprete request and build personal queries.
+    - not dependent of ORMs.
+
 
 
 ## About Model
@@ -53,15 +58,17 @@ Model allow to separate table structures to avoid conflicts when you want to cre
         'pk' => 'id' ## default value
     ]);
 
+
 ### pk()
 
-Primary key of model
+Primary key of model(table)
 
     #example
     $model = new \Simple\Model([
         'table'=>'superA',
         'alias'=>'A'
     ]);
+
     echo $model->pk();
     # A.id
 
@@ -77,7 +84,8 @@ How key from model $modelB are represented inside of Model like a foreing key. U
         'table'=>'superA',
         'alias'=>'A'
     ]);
-    $modelA = new \Simple\Model([
+
+    $modelB = new \Simple\Model([
         'table'=>'megaB',
         'alias'=>'B'
     ]);

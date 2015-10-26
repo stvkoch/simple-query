@@ -1,9 +1,8 @@
 <?php
 namespace Simple;
 
-interface QueryInterface {}
-
-class Query implements QueryInterface {
+class Query
+{
     public $from = null;
     public $fields = [];
     public $joins = [];
@@ -17,7 +16,7 @@ class Query implements QueryInterface {
         'double'  => 'd'
     ];
 
-    public function __construct($model= null)
+    public function __construct($model = null)
     {
         $this->from = $model;
     }
@@ -57,13 +56,13 @@ class Query implements QueryInterface {
 
     public function join($type, $model, $query = null)
     {
-        if ($model instanceof Model and is_null($query) ){
+        if ($model instanceof Model and is_null($query)) {
             $query = new self();
             $query->equal($this->from->field($this->from->pk()), $model->fk($this->from));
             $query->from($model);
         }
 
-        if ( $model instanceof self ) {
+        if ($model instanceof self) {
             $query = $model;
         }
 
@@ -74,7 +73,7 @@ class Query implements QueryInterface {
 
     public function order($field = null, $order = 'ASC')
     {
-        if(is_null($field)) {
+        if (is_null($field)) {
             $this->arrangements['ORDER BY'][$this->from->field($this->from->pk())] = $order;
             return $this;
         }
@@ -86,11 +85,13 @@ class Query implements QueryInterface {
 
     public function group()
     {
-        if(func_num_args()===0) {
-            $this->arrangements['GROUP BY'][] = $this->from->field($this->from->pk());
+        if (func_num_args()===0) {
+            $field = $this->from->field($this->from->pk());
+            $this->arrangements['GROUP BY'][$field] = $field;
             return $this;
         }
-        $this->arrangements['GROUP BY'][] = implode(', ', func_get_args());
+        $field = implode(', ', func_get_args());
+        $this->arrangements['GROUP BY'][$field] = $field;
         return $this;
     }
 
@@ -111,6 +112,17 @@ class Query implements QueryInterface {
         return $this;
     }
 
+    public function bind($stmt)
+    {
+        foreach ($this->bindParameters as $value) {
+            $stmt->bind_param(
+                $this->type($value),
+                $value
+            );
+        }
+
+        return $stmt;
+    }
     public function type($value)
     {
         $type = gettype($value);
@@ -121,29 +133,36 @@ class Query implements QueryInterface {
         return $this->type['default'];
     }
 
-    public function sqlCountSelect($fieldName='count')
+    public function sqlCountSelect($fieldName = 'count')
     {
         $this->initMaker();
-        $select = trim(sprintf('SELECT %s FROM %s%s%s%s%s',
-                    implode(', ', array_keys($this->fields)),
-                    $this->makeTable($this->from),
-                    $this->makeAlias($this->from),
-                    $this->makeJoins(),
-                    $this->makeConditions('WHERE'),
-                    $this->makeGroup()
-                ));
-        return trim(sprintf('SELECT COUNT(*) AS %s FROM (%s) AS _counter%s',
-            $fieldName,
-            $select,
-            $this->makeTable($this->from)
-        ));
+        $select = trim(
+            sprintf(
+                'SELECT %s FROM %s%s%s%s%s',
+                implode(', ', array_keys($this->fields)),
+                $this->makeTable($this->from),
+                $this->makeAlias($this->from),
+                $this->makeJoins(),
+                $this->makeConditions('WHERE'),
+                $this->makeGroup()
+            )
+        );
+        return trim(
+            sprintf(
+                'SELECT COUNT(*) AS %s FROM (%s) AS _counter%s',
+                $fieldName,
+                $select,
+                $this->makeTable($this->from)
+            )
+        );
     }
 
     public function sqlSelect()
     {
         $this->initMaker();
-        return trim(sprintf(
-            'SELECT %s FROM %s%s%s%s%s%s%s',
+        return trim(
+            sprintf(
+                'SELECT %s FROM %s%s%s%s%s%s%s',
                 implode(', ', array_keys($this->fields)),
                 $this->makeTable($this->from),
                 $this->makeAlias($this->from),
@@ -152,30 +171,35 @@ class Query implements QueryInterface {
                 $this->makeGroup(),
                 $this->makeOrder(),
                 $this->makeLimit()
-        ));
+            )
+        );
     }
 
     public function sqlDelete()
     {
         $this->initMaker();
-        return trim(sprintf(
-            'DELETE FROM %s%s%s',
+        return trim(
+            sprintf(
+                'DELETE FROM %s%s%s',
                 $this->makeTable($this->from),
                 $this->makeJoins(),
                 $this->makeConditions('WHERE')
-        ));
+            )
+        );
     }
 
 
     public function sqlUpdate()
     {
         $this->initMaker();
-        return trim(sprintf(
-            'UPDATE %sSET (%s) %s',
+        return trim(
+            sprintf(
+                'UPDATE %sSET (%s) %s',
                 $this->makeTable($this->from),
                 $this->makeFields(),
                 $this->makeConditions('WHERE')
-        ));
+            )
+        );
     }
 
 
@@ -203,7 +227,7 @@ class Query implements QueryInterface {
     public function makeValuePlaceHolders()
     {
         $this->bindParameters = array_values($this->fields);
-        return implode(', ', array_fill(1,count($this->fields), '(?)'));
+        return implode(', ', array_fill(1, count($this->fields), '(?)'));
     }
 
 
@@ -220,7 +244,7 @@ class Query implements QueryInterface {
 
     public function makeOrder()
     {
-        if(isset($this->arrangements['ORDER BY'])) {
+        if (isset($this->arrangements['ORDER BY'])) {
             $orders = [];
             foreach ($this->arrangements['ORDER BY'] as $field => $order) {
                 $orders[] = sprintf('%s %s', $field, $order);
@@ -233,7 +257,7 @@ class Query implements QueryInterface {
 
     public function makeGroup()
     {
-        if(isset($this->arrangements['GROUP BY'])) {
+        if (isset($this->arrangements['GROUP BY'])) {
             return 'GROUP BY '. implode(', ', $this->arrangements['GROUP BY']).' ';
         }
         return '';
@@ -242,7 +266,7 @@ class Query implements QueryInterface {
 
     public function makeLimit()
     {
-        if(isset($this->arrangements['LIMIT'])) {
+        if (isset($this->arrangements['LIMIT'])) {
             return 'LIMIT '. implode(', ', $this->arrangements['LIMIT']);
         }
         return '';
@@ -262,10 +286,11 @@ class Query implements QueryInterface {
                         $partCondition[] = sprintf('%s %s %s', $condition[0], $func, $condition[1]);
                         continue;
                     }
-                    if ( is_null($condition['value']) || $condition['value'] === 'NULL') {
-                        if ($func === '=')
+                    if (is_null($condition['value']) || $condition['value'] === 'NULL') {
+                        if ($func === '=') {
                             $func = 'IS';
-                        $partCondition[] = sprintf('%s %s NULL', $condition['field'], $func );
+                        }
+                        $partCondition[] = sprintf('%s %s NULL', $condition['field'], $func);
                         continue;
                     }
                     if ($func === 'RAW') {
@@ -278,7 +303,7 @@ class Query implements QueryInterface {
                         $this->bindParameters = array_merge($this->bindParameters, $condition['value']->bindParameters);
                         continue;
                     }
-                    $partCondition[] = sprintf('%s %s (?)', $condition['field'], $func );
+                    $partCondition[] = sprintf('%s %s (?)', $condition['field'], $func);
                     $this->bindParameters[] = $condition['value'];
                 }
             }
@@ -286,7 +311,7 @@ class Query implements QueryInterface {
         }
 
         if (count($conds)) {
-            return sprintf('%s %s ', $initial, implode( ' OR ', $conds));
+            return sprintf('%s %s ', $initial, implode(' OR ', $conds));
         }
 
         return '';
@@ -294,7 +319,7 @@ class Query implements QueryInterface {
 
     public function makeTable($model)
     {
-        if($model instanceof Model) {
+        if ($model instanceof Model) {
             return $model->table().' ';
         }
         return $model.' ';
@@ -302,7 +327,7 @@ class Query implements QueryInterface {
 
     public function makeAlias($model)
     {
-        if($model instanceof Model && $model->alias() !== $model->table()) {
+        if ($model instanceof Model && $model->alias() !== $model->table()) {
             return 'AS ' .$model->alias(). ' ';
         }
         return '';
@@ -313,19 +338,22 @@ class Query implements QueryInterface {
         $_joins = [];
         $bindParameters = [];
         foreach ($this->joins as $type => $joins) {
-            foreach( $joins as $joinQuery)
-            {
-                $_joins[] = sprintf('%s JOIN %s%s%s',
+            foreach ($joins as $joinQuery) {
+                $_joins[] = sprintf(
+                    '%s JOIN %s%s%s',
                     $type,
                     $joinQuery->makeTable($joinQuery->from),
                     $joinQuery->makeAlias($joinQuery->from),
-                    $joinQuery->makeConditions('ON'));
+                    $joinQuery->makeConditions('ON')
+                );
 
                 $this->bindParameters = array_merge($this->bindParameters, $joinQuery->bindParameters);
             }
         }
-        if(count($_joins))
+
+        if (count($_joins)) {
             return implode('', $_joins);
+        }
 
         return '';
     }
