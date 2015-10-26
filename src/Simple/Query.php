@@ -101,12 +101,14 @@ class Query implements QueryInterface {
             $page = 1;
         }
         $this->arrangements['LIMIT'] = [((int)$page-1)*$perPage, $perPage];
+        return $this;
     }
 
 
-    public function limit($limit, $offset)
+    public function limit()
     {
-         $this->arrangements['LIMIT'] = [$limit, $offset];
+         $this->arrangements['LIMIT'] = func_get_args();
+        return $this;
     }
 
     public function type($value)
@@ -117,6 +119,24 @@ class Query implements QueryInterface {
             return $this->types[$type];
         }
         return $this->type['default'];
+    }
+
+    public function sqlCountSelect($fieldName='count')
+    {
+        $this->initMaker();
+        $select = trim(sprintf('SELECT %s FROM %s%s%s%s%s',
+                    implode(', ', array_keys($this->fields)),
+                    $this->makeTable($this->from),
+                    $this->makeAlias($this->from),
+                    $this->makeJoins(),
+                    $this->makeConditions('WHERE'),
+                    $this->makeGroup()
+                ));
+        return trim(sprintf('SELECT COUNT(*) AS %s FROM (%s) AS _counter%s',
+            $fieldName,
+            $select,
+            $this->makeTable($this->from)
+        ));
     }
 
     public function sqlSelect()
@@ -246,6 +266,16 @@ class Query implements QueryInterface {
                         if ($func === '=')
                             $func = 'IS';
                         $partCondition[] = sprintf('%s %s NULL', $condition['field'], $func );
+                        continue;
+                    }
+                    if ($func === 'RAW') {
+                        $partCondition[] = $condition['field'];
+                        $this->bindParameters = array_merge($this->bindParameters, $condition['value']);
+                        continue;
+                    }
+                    if (isset($condition['value']) && $condition['value'] instanceof self) {
+                        $partCondition[] = sprintf('%s %s (%s)', $condition['field'], $func, $condition['value']->sqlSelect());
+                        $this->bindParameters = array_merge($this->bindParameters, $condition['value']->bindParameters);
                         continue;
                     }
                     $partCondition[] = sprintf('%s %s (?)', $condition['field'], $func );

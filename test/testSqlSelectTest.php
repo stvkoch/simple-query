@@ -29,6 +29,9 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($incrementalQuery, $query->sqlSelect());
 
 
+        $this->assertEquals( 'SELECT COUNT(*) AS count FROM ('.$incrementalQuery.') AS _countersuperA', $query->sqlCountSelect());
+
+
         $incrementalQuery = 'SELECT superA.* FROM superA WHERE superA.name LIKE (?) OR superA.surename LIKE (?)';
         $query->where($modelA->field('surename'), 'helo%', 'LIKE', 'OR');
         $this->assertEquals($incrementalQuery, $query->sqlSelect());
@@ -60,6 +63,9 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
 
         $queryPage->limit(0,150);
         $this->assertEquals('SELECT A.* FROM superA AS A LIMIT 0, 150', $queryPage->sqlSelect());
+        
+        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT A.* FROM superA AS A) AS _countersuperA', $queryPage->sqlCountSelect());
+
 
         $incrementalQuery .= ' WHERE A.name = (?)';
         $query->where($modelA->field('name'), 'John');
@@ -96,10 +102,46 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $this->assertContains(1, $queryJoin->bindParameters);
         $this->assertContains(2, $queryJoin->bindParameters);
         $this->assertEquals(array(2,'John',1), $queryJoin->bindParameters);
+        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.id = B.idSuperA LEFT JOIN megaC AS C ON A.id = C.fk_id_table_A AND C.category = (?) WHERE A.name = (?) AND A.age = (?) GROUP BY A.id) AS _countersuperA', $queryJoin->sqlCountSelect());
 
         //$this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.id = B.idSuperA LEFT JOIN megaC AS C ON A.id = C.fk_id_table_A WHERE A.name = (?) AND A.age = (?) GROUP BY A.id',$queryJoin->sqlSelect());
 
         //$this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.id=B.idSuperA',$query->sqlSelect());
+    }
+
+
+    public function testSubQueries()
+    {
+        $modelA = new \Simple\Model(['table'=>'superA', 'alias'=>'A']);
+        $modelB = new \Simple\Model(['table'=>'log',    'alias'=>'B']);
+        $modelC = new \Simple\Model(['table'=>'megaC',  'alias'=>'C']);
+
+        $expectSql = 'SELECT A.* FROM superA AS A WHERE id IN (SELECT B.idSuperA FROM log AS B WHERE date BETWEEN (?) AND (?))';
+
+        $query = new \Simple\Query($modelA);
+        $query->select($modelA->field('*'));
+
+        $queryLogModelA = (new \Simple\Query($modelB))
+                ->select($modelB->fk($modelA))
+                ->where('date BETWEEN (?) AND (?)', [1, 2], 'RAW');
+
+        $query->where('id', $queryLogModelA, 'IN');
+        $this->assertEquals($expectSql, $query->sqlSelect());
+        $this->assertEquals(array(1,2), $query->bindParameters);
+
+    }
+
+    public function testLimit()
+    {
+        $modelA = new \Simple\Model(['table'=>'superA', 'alias'=>'A']);
+        $incrementalQuery = 'SELECT A.* FROM superA AS A LIMIT 123';
+
+        $query = new \Simple\Query($modelA);
+        $query->select($modelA->field('*'))->limit(123);
+        $this->assertEquals($incrementalQuery, $query->sqlSelect());
+
+        $this->assertEquals($incrementalQuery, $query->sqlSelect());
+
     }
 }
 
