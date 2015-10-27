@@ -6,7 +6,8 @@ class Query
     public $from = null;
     public $fields = [];
     public $joins = [];
-    public $conditions = [];
+    public $whereConditions = [];
+    public $havingConditions = [];
     public $arrangements = [];
     public $bindParameters = [];
     public $limit = [];
@@ -16,17 +17,59 @@ class Query
         'double'  => 'd'
     ];
 
+    /**
+     * Create instance of query using optional model
+     * @param \Simple\Model $model ($optional)
+     */
     public function __construct($model = null)
     {
         $this->from = $model;
     }
 
+    /**
+     * set main model used by query
+     *
+     * @param null $model
+     *
+     * @return $this
+     */
     public function from($model = null)
     {
+        if (is_string($model)) {
+            $model = new \Simple\Model(['table'=>$model]);
+        }
         $this->from = $model;
         return $this;
     }
 
+    /**
+     * Alias of from with semantic of INSERT
+     *
+     * @param null $model
+     *
+     * @return Query
+     */
+    public function into($model = null) {
+        return $this->from($model);
+    }
+
+    /**
+     * Add query field used on select, insert and update query type
+     * In case of SELECT
+     *      $selectQuery->field('*')->from('user')->sqlSelect();
+     *  //SELECT * FROM user
+     *
+     *      $insertQuery->field('name', 'Jonh')->field('age', 22)->into(user')->sqlInsert();
+     * // INSERT INTO user (name, age) VALUES (?, ?);
+     *
+     *      $updateQuery->from('user')->field('age', 23)->where('name', 'Jonh')->sqlUpdate();
+     * // UPDATE user SET (age = ?) WHERE name = ?
+     *
+     * @param $field
+     * @param null $value
+     *
+     * @return $this
+     */
     public function field($field, $value = null)
     {
         $this->fields[$field] = $value;
@@ -34,26 +77,95 @@ class Query
     }
 
 
+    /**
+     * Alias of field method with semantic of SELECT SQL
+     * @example
+     *  // get all items from $model
+     *  $query->select($model->field('*'));
+     *
+     * @param $field
+     *
+     * @return Query
+     */
     public function select($field)
     {
         return $this->field($field);
     }
 
 
+    /**
+     * Add query WHERE condition
+     * @example
+     *  $query->where($model->pk(), $id2, '=', 'OR');
+     *  $query->where($model->pk(), $id1, '=', 'OR');
+     *
+     * @param $field
+     * @param $value
+     * @param string $function
+     * @param string $operator
+     *
+     * @return $this
+     */
     public function where($field, $value, $function = '=', $operator = 'AND')
     {
-        $this->conditions[strtoupper($operator)][strtoupper($function)][] = ['field'=>$field, 'value'=>$value];
+        $this->whereConditions[strtoupper($operator)][strtoupper($function)][] = ['field'=>$field, 'value'=>$value];
+        return $this;
+    }
+
+    /**
+     * Add query HAVING condition
+     * @example
+     *  $query->where($model->pk(), $id2, '=', 'OR');
+     *  $query->where($model->pk(), $id1, '=', 'OR');
+     *
+     * @param $field
+     * @param $value
+     * @param string $function
+     * @param string $operator
+     *
+     * @return $this
+     */
+    public function having($field, $value, $function = '=', $operator = 'AND')
+    {
+        $this->havingConditions[strtoupper($operator)][strtoupper($function)][] = ['field'=>$field, 'value'=>$value];
         return $this;
     }
 
 
+    /**
+     * Add literal condition without pass by statement
+     *  $query->equal('1','1')
+     *
+     * @param $field
+     * @param $value
+     * @param string $function
+     * @param string $operator
+     *
+     * @return $this
+     */
     public function equal($field, $value, $function = '=', $operator = 'AND')
     {
-        $this->conditions[strtoupper($operator)][strtoupper($function)][] = [$field, $value];
+        $this->whereConditions[strtoupper($operator)][strtoupper($function)][] = [$field, $value];
         return $this;
     }
 
 
+    /**
+     * Add join condition
+     * @example
+     *  $modelA = ...;
+     *  $modelB = ...;
+     *  $query = new \Simple\Query($model);
+     *  $query->join('left', $modelB);
+     *  $query->select($modelA->field('*'))->select($modelB->field('name'));
+     * ....
+     *
+     * @param $type
+     * @param $model
+     * @param null $query
+     *
+     * @return $this
+     */
     public function join($type, $model, $query = null)
     {
         if ($model instanceof Model and is_null($query)) {
@@ -71,6 +183,16 @@ class Query
     }
 
 
+    /**
+     * Add order, allow multiples orders
+     * @example
+     *  $query->order($modelA->field('created_at'), 'DESC');
+     *
+     * @param null $field
+     * @param string $order
+     *
+     * @return $this
+     */
     public function order($field = null, $order = 'ASC')
     {
         if (is_null($field)) {
@@ -83,6 +205,13 @@ class Query
     }
 
 
+    /**
+     * Add group statement
+     * @example
+     *  $query->group($model->pk());
+     *
+     * @return $this
+     */
     public function group()
     {
         if (func_num_args()===0) {
@@ -96,6 +225,14 @@ class Query
     }
 
 
+    /**
+     * Helper calculate limit and offset by page and perPage argument
+     *
+     * @param $page
+     * @param $perPage
+     *
+     * @return $this
+     */
     public function page($page, $perPage)
     {
         if ($page < 1) {
@@ -106,12 +243,29 @@ class Query
     }
 
 
+    /**
+     * Set limit of sql
+     *
+     * @return $this
+     */
     public function limit()
     {
          $this->arrangements['LIMIT'] = func_get_args();
         return $this;
     }
 
+    /**
+     * Helper that bind parameters of this query inside of connection statements
+     * $query->where('name', $name);
+     * $query->where('age', $age);
+     *
+     * $stmt = $connection->prepare($query->sqlSelect());
+     * $result = $query->bind($stmt)->execute();
+     *
+     * @param $stmt
+     *
+     * @return mixed
+     */
     public function bind($stmt)
     {
         foreach ($this->bindParameters as $value) {
@@ -123,6 +277,18 @@ class Query
 
         return $stmt;
     }
+
+
+    /**
+     * Helper function that return mysql bind_param type of value
+     *  i is for integer
+     *  d is for double
+     *  s is for string
+     *
+     * @param $value
+     *
+     * @return mixed
+     */
     public function type($value)
     {
         $type = gettype($value);
@@ -133,18 +299,32 @@ class Query
         return $this->type['default'];
     }
 
+
+    /**
+     * Generate SQL count follow conditions of query
+     * This SQL ignore pagination, limit values, order and any unnecessary
+     * statement
+     *
+     * @param string $fieldName
+     *
+     * @return string
+     */
     public function sqlCountSelect($fieldName = 'count')
     {
         $this->initMaker();
         $select = trim(
             sprintf(
-                'SELECT %s FROM %s%s%s%s%s',
-                implode(', ', array_keys($this->fields)),
+                'SELECT %s FROM %s%s%s%s%s%s',
+                # if has having condition use fields
+                $this->hasHavingConditions() ?
+                    implode(', ', array_keys($this->fields))
+                    : $this->from->field($this->from->pk()),
                 $this->makeTable($this->from),
                 $this->makeAlias($this->from),
                 $this->makeJoins(),
                 $this->makeConditions('WHERE'),
-                $this->makeGroup()
+                $this->makeGroup(),
+                $this->makeConditions('HAVING', $this->havingConditions)
             )
         );
         return trim(
@@ -157,18 +337,24 @@ class Query
         );
     }
 
+    /**
+     * Generate Select SQL based on conditions and statements values
+     *
+     * @return string
+     */
     public function sqlSelect()
     {
         $this->initMaker();
         return trim(
             sprintf(
-                'SELECT %s FROM %s%s%s%s%s%s%s',
+                'SELECT %s FROM %s%s%s%s%s%s%s%s',
                 implode(', ', array_keys($this->fields)),
                 $this->makeTable($this->from),
                 $this->makeAlias($this->from),
                 $this->makeJoins(),
                 $this->makeConditions('WHERE'),
                 $this->makeGroup(),
+                $this->makeConditions('HAVING', $this->havingConditions),
                 $this->makeOrder(),
                 $this->makeLimit()
             )
@@ -273,12 +459,23 @@ class Query
     }
 
 
-    public function makeConditions($initial = '')
+    /**
+     * makeConditions
+     * @param string $initial
+     * @param null $initialConditions
+     *
+     * @return string
+     */
+    public function makeConditions($initial = '', $initialConditions = null)
     {
-        $conds = [];
-        $bindParameters = [];
+        // default use condition, but you can pass havingCondition instead
+        if (is_null($initialConditions)) {
+            $initialConditions = $this->whereConditions;
+        }
 
-        foreach ($this->conditions as $oper => $functions) {
+        $conds = [];
+
+        foreach ($initialConditions as $oper => $functions) {
             $partCondition = [];
             foreach ($functions as $func => $conditions) {
                 foreach ($conditions as $condition) {
@@ -333,7 +530,7 @@ class Query
         return '';
     }
 
-    public function makeJoins()
+    protected function makeJoins()
     {
         $_joins = [];
         $bindParameters = [];
@@ -357,4 +554,13 @@ class Query
 
         return '';
     }
+
+    /**
+     * @return bool
+     */
+    protected function hasHavingConditions()
+    {
+        return (boolean) count($this->havingConditions);
+    }
+
 }

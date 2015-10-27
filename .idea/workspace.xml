@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="392f9701-b11b-4014-a57e-a8879277dc4c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Simple/Query.php" afterPath="$PROJECT_DIR$/src/Simple/Query.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/testFactoryTest.php" afterPath="$PROJECT_DIR$/test/testFactoryTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/testSqlSelectTest.php" afterPath="$PROJECT_DIR$/test/testSqlSelectTest.php" />
+    </list>
+    <ignored path="simple-query.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="simple-query" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="Query.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Simple/Query.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.0">
+              <caret line="96" column="22" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
+              <folding>
+                <marker date="1445941878257" expanded="true" signature="7474:7499" placeholder="SELECT %s FR..." />
+                <marker date="1445941878257" expanded="true" signature="7474:7501" placeholder="SELECT %s FR..." />
+                <marker date="1445941878257" expanded="true" signature="8097:8142" placeholder="SELECT COUNT..." />
+                <marker date="1445941878257" expanded="true" signature="8515:8544" placeholder="SELECT %s FR..." />
+                <marker date="1445941878257" expanded="true" signature="8515:8546" placeholder="SELECT %s FR..." />
+                <marker date="1445941878257" expanded="true" signature="9123:9141" placeholder="DELETE FROM ..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="testSqlSelectTest.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/testSqlSelectTest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4374308">
+              <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
+              <folding>
+                <marker date="1445941976322" expanded="true" signature="435:462" placeholder="SELECT super..superA..." />
+                <marker date="1445941976322" expanded="true" signature="920:974" placeholder="SELECT super..superA..." />
+                <marker date="1445941976322" expanded="true" signature="1079:1184" placeholder="SELECT COUNT..." />
+                <marker date="1445941976322" expanded="true" signature="1245:1327" placeholder="SELECT super..superA..." />
+                <marker date="1445941976322" expanded="true" signature="1612:1683" placeholder="SELECT COUNT..." />
+                <marker date="1445941976322" expanded="true" signature="2017:2044" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445941976322" expanded="true" signature="2304:2343" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445941976322" expanded="true" signature="2497:2545" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445941976322" expanded="true" signature="2675:2748" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445941976322" expanded="true" signature="2841:2881" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445941976322" expanded="true" signature="2948:3026" placeholder="SELECT COUNT..." />
+                <marker date="1445941976322" expanded="true" signature="3647:3723" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445941976322" expanded="true" signature="3855:3974" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445941976322" expanded="true" signature="4131:4268" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445941976322" expanded="true" signature="4568:4755" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445941976322" expanded="true" signature="5079:5317" placeholder="SELECT COUNT..." />
+                <marker date="1445941976322" expanded="true" signature="5991:6095" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445941976322" expanded="true" signature="6032:6069" placeholder="SELECT B.idS..log..." />
+                <marker date="1445941976322" expanded="true" signature="6687:6724" placeholder="SELECT A.* F..superA..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="testFactoryTest.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/testFactoryTest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-20.666666">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <folding>
+                <marker date="1445941764521" expanded="true" signature="491:518" placeholder="SELECT super..superA..." />
+                <marker date="1445941764521" expanded="true" signature="972:1026" placeholder="SELECT super..superA..." />
+                <marker date="1445941764521" expanded="true" signature="1127:1232" placeholder="SELECT COUNT..." />
+                <marker date="1445941764521" expanded="true" signature="1291:1373" placeholder="SELECT super..superA..." />
+                <marker date="1445941764521" expanded="true" signature="1987:2074" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445941764521" expanded="true" signature="2594:2681" placeholder="SELECT A.* F..superA..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/test/testFactoryTest.php" />
+        <option value="$PROJECT_DIR$/src/Simple/Query.php" />
+        <option value="$PROJECT_DIR$/test/testSqlSelectTest.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="NamedScopeManager">
+    <order />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="47" />
+    <option name="y" value="24" />
+    <option name="width" value="1920" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simple-query" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simple-query" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simple-query" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simple-query" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simple-query" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simple-query" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simple-query" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Simple" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="392f9701-b11b-4014-a57e-a8879277dc4c" name="Default" comment="" />
+      <created>1445885989485</created>
+      <option name="number" value="Default" />
+      <updated>1445885989485</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="47" y="24" width="1920" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14140876" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15154749" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Simple/Query.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1445941878257" expanded="true" signature="7474:7499" placeholder="SELECT %s FR..." />
+            <marker date="1445941878257" expanded="true" signature="7474:7501" placeholder="SELECT %s FR..." />
+            <marker date="1445941878257" expanded="true" signature="8097:8142" placeholder="SELECT COUNT..." />
+            <marker date="1445941878257" expanded="true" signature="8515:8544" placeholder="SELECT %s FR..." />
+            <marker date="1445941878257" expanded="true" signature="8515:8546" placeholder="SELECT %s FR..." />
+            <marker date="1445941878257" expanded="true" signature="9123:9141" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/testFactoryTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.666666">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <marker date="1445941764521" expanded="true" signature="491:518" placeholder="SELECT super..superA..." />
+            <marker date="1445941764521" expanded="true" signature="972:1026" placeholder="SELECT super..superA..." />
+            <marker date="1445941764521" expanded="true" signature="1127:1232" placeholder="SELECT COUNT..." />
+            <marker date="1445941764521" expanded="true" signature="1291:1373" placeholder="SELECT super..superA..." />
+            <marker date="1445941764521" expanded="true" signature="1987:2074" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445941764521" expanded="true" signature="2594:2681" placeholder="SELECT A.* F..superA..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Simple/Query.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0">
+          <caret line="96" column="22" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
+          <folding>
+            <marker date="1445941878257" expanded="true" signature="7474:7499" placeholder="SELECT %s FR..." />
+            <marker date="1445941878257" expanded="true" signature="7474:7501" placeholder="SELECT %s FR..." />
+            <marker date="1445941878257" expanded="true" signature="8097:8142" placeholder="SELECT COUNT..." />
+            <marker date="1445941878257" expanded="true" signature="8515:8544" placeholder="SELECT %s FR..." />
+            <marker date="1445941878257" expanded="true" signature="8515:8546" placeholder="SELECT %s FR..." />
+            <marker date="1445941878257" expanded="true" signature="9123:9141" placeholder="DELETE FROM ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/testSqlSelectTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4374308">
+          <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
+          <folding>
+            <marker date="1445941976322" expanded="true" signature="435:462" placeholder="SELECT super..superA..." />
+            <marker date="1445941976322" expanded="true" signature="920:974" placeholder="SELECT super..superA..." />
+            <marker date="1445941976322" expanded="true" signature="1079:1184" placeholder="SELECT COUNT..." />
+            <marker date="1445941976322" expanded="true" signature="1245:1327" placeholder="SELECT super..superA..." />
+            <marker date="1445941976322" expanded="true" signature="1612:1683" placeholder="SELECT COUNT..." />
+            <marker date="1445941976322" expanded="true" signature="2017:2044" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445941976322" expanded="true" signature="2304:2343" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445941976322" expanded="true" signature="2497:2545" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445941976322" expanded="true" signature="2675:2748" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445941976322" expanded="true" signature="2841:2881" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445941976322" expanded="true" signature="2948:3026" placeholder="SELECT COUNT..." />
+            <marker date="1445941976322" expanded="true" signature="3647:3723" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445941976322" expanded="true" signature="3855:3974" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445941976322" expanded="true" signature="4131:4268" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445941976322" expanded="true" signature="4568:4755" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445941976322" expanded="true" signature="5079:5317" placeholder="SELECT COUNT..." />
+            <marker date="1445941976322" expanded="true" signature="5991:6095" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445941976322" expanded="true" signature="6032:6069" placeholder="SELECT B.idS..log..." />
+            <marker date="1445941976322" expanded="true" signature="6687:6724" placeholder="SELECT A.* F..superA..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

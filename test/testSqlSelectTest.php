@@ -29,12 +29,18 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($incrementalQuery, $query->sqlSelect());
 
 
-        $this->assertEquals( 'SELECT COUNT(*) AS count FROM ('.$incrementalQuery.') AS _countersuperA', $query->sqlCountSelect());
+
+        $this->assertEquals( 'SELECT COUNT(*) AS count FROM (SELECT superA.id FROM superA WHERE superA.name LIKE (?)) AS _countersuperA', $query->sqlCountSelect());
 
 
         $incrementalQuery = 'SELECT superA.* FROM superA WHERE superA.name LIKE (?) OR superA.surename LIKE (?)';
         $query->where($modelA->field('surename'), 'helo%', 'LIKE', 'OR');
         $this->assertEquals($incrementalQuery, $query->sqlSelect());
+
+
+        $incrementalQuery .= ' HAVING superA.age = (?)';
+        $query->having($modelA->field('age'),22);
+        $this->assertEquals( 'SELECT COUNT(*) AS count FROM ('.$incrementalQuery.') AS _countersuperA', $query->sqlCountSelect());
     }
 
     public function testSqlSelectWithAlias()
@@ -64,7 +70,7 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $queryPage->limit(0,150);
         $this->assertEquals('SELECT A.* FROM superA AS A LIMIT 0, 150', $queryPage->sqlSelect());
         
-        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT A.* FROM superA AS A) AS _countersuperA', $queryPage->sqlCountSelect());
+        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT A.id FROM superA AS A) AS _countersuperA', $queryPage->sqlCountSelect());
 
 
         $incrementalQuery .= ' WHERE A.name = (?)';
@@ -102,7 +108,7 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $this->assertContains(1, $queryJoin->bindParameters);
         $this->assertContains(2, $queryJoin->bindParameters);
         $this->assertEquals(array(2,'John',1), $queryJoin->bindParameters);
-        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.id = B.idSuperA LEFT JOIN megaC AS C ON A.id = C.fk_id_table_A AND C.category = (?) WHERE A.name = (?) AND A.age = (?) GROUP BY A.id) AS _countersuperA', $queryJoin->sqlCountSelect());
+        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT A.id FROM superA AS A LEFT JOIN hiperB AS B ON A.id = B.idSuperA LEFT JOIN megaC AS C ON A.id = C.fk_id_table_A AND C.category = (?) WHERE A.name = (?) AND A.age = (?) GROUP BY A.id) AS _countersuperA', $queryJoin->sqlCountSelect());
 
         //$this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.id = B.idSuperA LEFT JOIN megaC AS C ON A.id = C.fk_id_table_A WHERE A.name = (?) AND A.age = (?) GROUP BY A.id',$queryJoin->sqlSelect());
 

@@ -28,7 +28,7 @@ class TestFactoryTest extends \PHPUnit_Framework_TestCase
         $query->where($modelA->field('name'), 'joh%', 'LIKE');
         $incrementalQuery = 'SELECT superA.* FROM superA WHERE superA.name LIKE (?)';
         $this->assertEquals($incrementalQuery, $query->sqlSelect());
-        $this->assertEquals('SELECT COUNT(*) AS count FROM ('.$incrementalQuery.') AS _countersuperA', $query->sqlCountSelect());
+        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT superA.id FROM superA WHERE superA.name LIKE (?)) AS _countersuperA', $query->sqlCountSelect());
         $incrementalQuery = 'SELECT superA.* FROM superA WHERE superA.name LIKE (?) OR superA.surename LIKE (?)';
         $query->where($modelA->field('surename'), 'helo%', 'LIKE', 'OR');
         $this->assertEquals($incrementalQuery, $query->sqlSelect());
