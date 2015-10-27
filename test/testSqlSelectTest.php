@@ -149,5 +149,7 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($incrementalQuery, $query->sqlSelect());
 
     }
+
+
 }
 

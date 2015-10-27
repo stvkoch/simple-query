@@ -37,8 +37,13 @@ trait ModelMethods
     }
 
     /**
-     * convention how this model is represent as foreign key of modelFk
-     * idTablename
+     * convention how this model is represent as foreign key on modelB
+     * $modelA->fk($modelB)
+     *  // A.idModelB
+     *
+     * @param $modelFk
+     *
+     * @return string
      */
     public function fk($modelFk)
     {

@@ -102,7 +102,7 @@ Useful method return anti-collision field name
         'table'=>'superA',
         'alias'=>'A'
     ]);
-    echo $model->field('name');
+    echo $modelA->field('name');
     # A.name
 
 
@@ -160,30 +160,33 @@ return alias table
     $query->where($model->field('age'), 'NULL', 'IS NOT');
 
 
+
 ### Subquery condition
 
-    $modelLog = new \Simple\Model(['table'=>'logs']);
-    $modelProd = new \Simple\Model(['table'=>'product']);
 
-    $queryLog = new \Simple\Query($modelLog);
-    $queryLog->field($modelLog->fk($modelProd))
-        ->where('createAt BETWEEN (?) AND (?)', [$date1, $date2], 'RAW')
-        ->limit(10)
-        ->group($modelLog->fk($modelProd))
-        ->order($modelLog->field('createAt'));
+    $modelUser = new \Simple\Model(['table'=>'user']);
+    $modelOrder = new \Simple\Model(['table'=>'order']);
 
-    $query = new \Simple\Query($modelProd);
-    $query->where($modelProd->field($modelProd->pk()), $queryLog, 'IN')
-        ->order($modelProd->field('name'))
-        ->limit(10);
+    // get all user are active customer in holiday month
 
-    #SELECT product.* FROM product WHERE product.id IN (SELECT logs.idProduct FROM logs WHERE createAt BETWEEN (?) AND (?) GROUP BY logs.idProduct ORDER BY logs.createAt ASC LIMIT 10) ORDER BY product.name ASC LIMIT 10
+    $queryOrder = new \Simple\Query($modelOrder);
+    $queryOrder->field($modelOrder->fk($modelUser))
+        ->where('createAt BETWEEN (?) AND (?)', ['2015-12-01','2015-12-31'], 'RAW')
+        ->group($modelOrder->fk($modelUser));
+
+    $query = new \Simple\Query($modelUser);
+    $query->where($modelUser->field($modelUser->pk()), $queryOrder, 'IN')
+        ->order($modelUser->field('name'))
+        ->page(1, 20);
+
+    +'SELECT user.* FROM user WHERE user.id IN (SELECT order.idUser FROM order WHERE createAt BETWEEN (?) AND (?) GROUP BY order.idUser) ORDER BY user.name ASC LIMIT 0, 20'
+
 
 
 
 ### Where
 
-Add condition.
+Add condition. This apply to 'having' method
 
     $query
         ->where($fieldName, $valueToBind, $function = '=', $operator = 'AND')
@@ -199,16 +202,57 @@ Support conditions functions:
     'RAW' (not apply function condition, you should provide complete condition)
 
 
+#### Examples
+
+'=','>','<','<=','>=', '!='
+
+    $query->where('field', $value, '!=');
+
+'IN' or 'NOT IN'
+
+    $query->where('field', array($value1, $value2), 'IN');
+
+'RAW' (not apply function condition, you should provide complete condition)
+RAW function is a powerful function condition.
+
+    $query->where('name = (?) AND age = (?) AND actice=1', [$value1, $value2], 'RAW');
+
+
+
+### equal
+
+equal method add conditions that is not parsed or encoded by query.
+This is a danger feature but necessary when used to add keys tables in joins conditions.
+
+
+$queryJoin = new \Simple\Query($modelB);
+$queryJoin->equal($modelA->pk(), $modelB->fk($modelA));
+
+
+
+
 ### Group
 
     $query->group($model->pk());
+    $query->group($model->field('name'));
+    ...
 
 
 ### Order
 
     $query->order($model->field('name'), 'DESC');
+    // accept DESC or ASC
+
 
 ### Joins
+
+Joins is another complex structure that \Simple\Query help you made simple and powerful.
+With \Simple\Query you can join models and queries objects.
+Join table work with keys co-related between tables.
+Generally this key are someone primary key and your foreign key (that represent primary key some table)
+
+\Simple\Model have two methods that help you organized keys pk() and fk().
+
 
     #example A
     $modelA = new ModelA();
@@ -226,9 +270,11 @@ Support conditions functions:
             ->where('name', $paramName)
     );
 
+
+
 ### Pagination or Limit
 
-    # calcule limit and offset basead on page and perPage values
+    # calc limit and offset based on page and perPage values
     $query->page($page, $perPage);
 
     # or you can use limit and offset directly
@@ -261,7 +307,12 @@ Support conditions functions:
 
 When you work with values Simple Query Build allways work with SQL statement.
 
-You can bind your values this way:
+
+$stmt = $con->prepare($query->sqlSelect());
+$query->bind($stmt)->execute()->get_result();
+
+
+Or you can bind your values this way:
 
 
     # more real example

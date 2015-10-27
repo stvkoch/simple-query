@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="392f9701-b11b-4014-a57e-a8879277dc4c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Simple/Query.php" afterPath="$PROJECT_DIR$/src/Simple/Query.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/testFactoryTest.php" afterPath="$PROJECT_DIR$/test/testFactoryTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Simple/Traits/ModelMethods.php" afterPath="$PROJECT_DIR$/src/Simple/Traits/ModelMethods.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/testSqlSelectTest.php" afterPath="$PROJECT_DIR$/test/testSqlSelectTest.php" />
     </list>
     <ignored path="simple-query.iws" />
@@ -29,8 +29,8 @@
       <file leaf-file-name="Query.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Simple/Query.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.0">
-              <caret line="96" column="22" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
+            <state vertical-scroll-proportion="-5.3333335">
+              <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
               <folding>
                 <marker date="1445941878257" expanded="true" signature="7474:7499" placeholder="SELECT %s FR..." />
                 <marker date="1445941878257" expanded="true" signature="7474:7501" placeholder="SELECT %s FR..." />
@@ -43,48 +43,71 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testSqlSelectTest.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/testSqlSelectTest.php">
+      <file leaf-file-name="Model.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Simple/Model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4374308">
-              <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
-              <folding>
-                <marker date="1445941976322" expanded="true" signature="435:462" placeholder="SELECT super..superA..." />
-                <marker date="1445941976322" expanded="true" signature="920:974" placeholder="SELECT super..superA..." />
-                <marker date="1445941976322" expanded="true" signature="1079:1184" placeholder="SELECT COUNT..." />
-                <marker date="1445941976322" expanded="true" signature="1245:1327" placeholder="SELECT super..superA..." />
-                <marker date="1445941976322" expanded="true" signature="1612:1683" placeholder="SELECT COUNT..." />
-                <marker date="1445941976322" expanded="true" signature="2017:2044" placeholder="SELECT A.* F..superA..." />
-                <marker date="1445941976322" expanded="true" signature="2304:2343" placeholder="SELECT A.* F..superA..." />
-                <marker date="1445941976322" expanded="true" signature="2497:2545" placeholder="SELECT A.* F..superA..." />
-                <marker date="1445941976322" expanded="true" signature="2675:2748" placeholder="SELECT A.* F..superA..." />
-                <marker date="1445941976322" expanded="true" signature="2841:2881" placeholder="SELECT A.* F..superA..." />
-                <marker date="1445941976322" expanded="true" signature="2948:3026" placeholder="SELECT COUNT..." />
-                <marker date="1445941976322" expanded="true" signature="3647:3723" placeholder="SELECT A.* F..superA..." />
-                <marker date="1445941976322" expanded="true" signature="3855:3974" placeholder="SELECT A.* F..superA..." />
-                <marker date="1445941976322" expanded="true" signature="4131:4268" placeholder="SELECT A.* F..superA..." />
-                <marker date="1445941976322" expanded="true" signature="4568:4755" placeholder="SELECT A.* F..superA..." />
-                <marker date="1445941976322" expanded="true" signature="5079:5317" placeholder="SELECT COUNT..." />
-                <marker date="1445941976322" expanded="true" signature="5991:6095" placeholder="SELECT A.* F..superA..." />
-                <marker date="1445941976322" expanded="true" signature="6032:6069" placeholder="SELECT B.idS..log..." />
-                <marker date="1445941976322" expanded="true" signature="6687:6724" placeholder="SELECT A.* F..superA..." />
-              </folding>
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testFactoryTest.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/testFactoryTest.php">
+      <file leaf-file-name="ModelMethods.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Simple/Traits/ModelMethods.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.666666">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+            <state vertical-scroll-proportion="-12.666667">
+              <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.84">
+              <caret line="319" column="32" selection-start-line="319" selection-start-column="32" selection-end-line="319" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModelProprieties.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Simple/Traits/ModelProprieties.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.3333335">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="testSqlSelectTest.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/testSqlSelectTest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-27.444445">
+              <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
               <folding>
-                <marker date="1445941764521" expanded="true" signature="491:518" placeholder="SELECT super..superA..." />
-                <marker date="1445941764521" expanded="true" signature="972:1026" placeholder="SELECT super..superA..." />
-                <marker date="1445941764521" expanded="true" signature="1127:1232" placeholder="SELECT COUNT..." />
-                <marker date="1445941764521" expanded="true" signature="1291:1373" placeholder="SELECT super..superA..." />
-                <marker date="1445941764521" expanded="true" signature="1987:2074" placeholder="SELECT A.* F..superA..." />
-                <marker date="1445941764521" expanded="true" signature="2594:2681" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445943141005" expanded="true" signature="435:462" placeholder="SELECT super..superA..." />
+                <marker date="1445943141005" expanded="true" signature="920:974" placeholder="SELECT super..superA..." />
+                <marker date="1445943141005" expanded="true" signature="1079:1184" placeholder="SELECT COUNT..." />
+                <marker date="1445943141005" expanded="true" signature="1245:1327" placeholder="SELECT super..superA..." />
+                <marker date="1445943141005" expanded="true" signature="1612:1683" placeholder="SELECT COUNT..." />
+                <marker date="1445943141005" expanded="true" signature="2017:2044" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445943141005" expanded="true" signature="2304:2343" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445943141005" expanded="true" signature="2497:2545" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445943141005" expanded="true" signature="2675:2748" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445943141005" expanded="true" signature="2841:2881" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445943141005" expanded="true" signature="2948:3026" placeholder="SELECT COUNT..." />
+                <marker date="1445943141005" expanded="true" signature="3647:3723" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445943141005" expanded="true" signature="3855:3974" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445943141005" expanded="true" signature="4131:4268" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445943141005" expanded="true" signature="4568:4755" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445943141005" expanded="true" signature="5079:5317" placeholder="SELECT COUNT..." />
+                <marker date="1445943141005" expanded="true" signature="5991:6095" placeholder="SELECT A.* F..superA..." />
+                <marker date="1445943141005" expanded="true" signature="6032:6069" placeholder="SELECT B.idS..log..." />
+                <marker date="1445943141005" expanded="true" signature="6687:6724" placeholder="SELECT A.* F..superA..." />
               </folding>
             </state>
           </provider>
@@ -100,7 +123,9 @@
       <list>
         <option value="$PROJECT_DIR$/test/testFactoryTest.php" />
         <option value="$PROJECT_DIR$/src/Simple/Query.php" />
+        <option value="$PROJECT_DIR$/src/Simple/Traits/ModelMethods.php" />
         <option value="$PROJECT_DIR$/test/testSqlSelectTest.php" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -188,6 +213,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Simple" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simple-query" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="simple-query" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Simple" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Traits" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -288,25 +335,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/testFactoryTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.666666">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding>
-            <marker date="1445941764521" expanded="true" signature="491:518" placeholder="SELECT super..superA..." />
-            <marker date="1445941764521" expanded="true" signature="972:1026" placeholder="SELECT super..superA..." />
-            <marker date="1445941764521" expanded="true" signature="1127:1232" placeholder="SELECT COUNT..." />
-            <marker date="1445941764521" expanded="true" signature="1291:1373" placeholder="SELECT super..superA..." />
-            <marker date="1445941764521" expanded="true" signature="1987:2074" placeholder="SELECT A.* F..superA..." />
-            <marker date="1445941764521" expanded="true" signature="2594:2681" placeholder="SELECT A.* F..superA..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Simple/Query.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.0">
-          <caret line="96" column="22" selection-start-line="96" selection-start-column="22" selection-end-line="96" selection-end-column="22" />
+        <state vertical-scroll-proportion="-5.3333335">
+          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
           <folding>
             <marker date="1445941878257" expanded="true" signature="7474:7499" placeholder="SELECT %s FR..." />
             <marker date="1445941878257" expanded="true" signature="7474:7501" placeholder="SELECT %s FR..." />
@@ -318,31 +350,78 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Simple/Traits/ModelProprieties.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.3333335">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Simple/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Simple/Traits/ModelMethods.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.666667">
+          <caret line="19" column="39" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/testFactoryTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4385382">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <marker date="1445941764521" expanded="true" signature="-1:-1" placeholder="SELECT super..superA..." />
+            <marker date="1445941764521" expanded="true" signature="-1:-1" placeholder="SELECT super..superA..." />
+            <marker date="1445941764521" expanded="true" signature="-1:-1" placeholder="SELECT COUNT..." />
+            <marker date="1445941764521" expanded="true" signature="-1:-1" placeholder="SELECT super..superA..." />
+            <marker date="1445941764521" expanded="true" signature="-1:-1" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445941764521" expanded="true" signature="-1:-1" placeholder="SELECT A.* F..superA..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/testSqlSelectTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4374308">
-          <caret line="40" column="45" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
+        <state vertical-scroll-proportion="-27.444445">
+          <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
           <folding>
-            <marker date="1445941976322" expanded="true" signature="435:462" placeholder="SELECT super..superA..." />
-            <marker date="1445941976322" expanded="true" signature="920:974" placeholder="SELECT super..superA..." />
-            <marker date="1445941976322" expanded="true" signature="1079:1184" placeholder="SELECT COUNT..." />
-            <marker date="1445941976322" expanded="true" signature="1245:1327" placeholder="SELECT super..superA..." />
-            <marker date="1445941976322" expanded="true" signature="1612:1683" placeholder="SELECT COUNT..." />
-            <marker date="1445941976322" expanded="true" signature="2017:2044" placeholder="SELECT A.* F..superA..." />
-            <marker date="1445941976322" expanded="true" signature="2304:2343" placeholder="SELECT A.* F..superA..." />
-            <marker date="1445941976322" expanded="true" signature="2497:2545" placeholder="SELECT A.* F..superA..." />
-            <marker date="1445941976322" expanded="true" signature="2675:2748" placeholder="SELECT A.* F..superA..." />
-            <marker date="1445941976322" expanded="true" signature="2841:2881" placeholder="SELECT A.* F..superA..." />
-            <marker date="1445941976322" expanded="true" signature="2948:3026" placeholder="SELECT COUNT..." />
-            <marker date="1445941976322" expanded="true" signature="3647:3723" placeholder="SELECT A.* F..superA..." />
-            <marker date="1445941976322" expanded="true" signature="3855:3974" placeholder="SELECT A.* F..superA..." />
-            <marker date="1445941976322" expanded="true" signature="4131:4268" placeholder="SELECT A.* F..superA..." />
-            <marker date="1445941976322" expanded="true" signature="4568:4755" placeholder="SELECT A.* F..superA..." />
-            <marker date="1445941976322" expanded="true" signature="5079:5317" placeholder="SELECT COUNT..." />
-            <marker date="1445941976322" expanded="true" signature="5991:6095" placeholder="SELECT A.* F..superA..." />
-            <marker date="1445941976322" expanded="true" signature="6032:6069" placeholder="SELECT B.idS..log..." />
-            <marker date="1445941976322" expanded="true" signature="6687:6724" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445943141005" expanded="true" signature="435:462" placeholder="SELECT super..superA..." />
+            <marker date="1445943141005" expanded="true" signature="920:974" placeholder="SELECT super..superA..." />
+            <marker date="1445943141005" expanded="true" signature="1079:1184" placeholder="SELECT COUNT..." />
+            <marker date="1445943141005" expanded="true" signature="1245:1327" placeholder="SELECT super..superA..." />
+            <marker date="1445943141005" expanded="true" signature="1612:1683" placeholder="SELECT COUNT..." />
+            <marker date="1445943141005" expanded="true" signature="2017:2044" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445943141005" expanded="true" signature="2304:2343" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445943141005" expanded="true" signature="2497:2545" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445943141005" expanded="true" signature="2675:2748" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445943141005" expanded="true" signature="2841:2881" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445943141005" expanded="true" signature="2948:3026" placeholder="SELECT COUNT..." />
+            <marker date="1445943141005" expanded="true" signature="3647:3723" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445943141005" expanded="true" signature="3855:3974" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445943141005" expanded="true" signature="4131:4268" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445943141005" expanded="true" signature="4568:4755" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445943141005" expanded="true" signature="5079:5317" placeholder="SELECT COUNT..." />
+            <marker date="1445943141005" expanded="true" signature="5991:6095" placeholder="SELECT A.* F..superA..." />
+            <marker date="1445943141005" expanded="true" signature="6032:6069" placeholder="SELECT B.idS..log..." />
+            <marker date="1445943141005" expanded="true" signature="6687:6724" placeholder="SELECT A.* F..superA..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.84">
+          <caret line="319" column="32" selection-start-line="319" selection-start-column="32" selection-end-line="319" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
