@@ -339,8 +339,6 @@ Or you can bind your values this way:
 
 
 - Create index of fields used in WHERE, ORDER and JOINs.
-- Use innodb table engine when you have write heavy programer
-and if you need foreing keys constrains. MyISAM is more fast in program that not need write heavy operations.
 - Try agroup your condition fields inside of compose index.
 - Use correct type length to store your data. Only use big store datatype when really required!
 - Benchmark your queries and index.
