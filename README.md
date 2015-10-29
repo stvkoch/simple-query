@@ -344,7 +344,7 @@ Or you can bind your values this way:
 - Benchmark your queries and index.
 - Use EXPLAIN to discovery how and what you need improve.
 - Try discovery if are more fast paginate in PHP side. Benchmark this choice!
-- Even COUNT queries, benchmark if are more fast calculate PHP side.
+- Even COUNT queries, benchmark and discovery if are more fast calculate this PHP side.
 - Disable log queries in production.
 
 

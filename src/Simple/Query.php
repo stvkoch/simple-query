@@ -1,4 +1,3 @@
-<?php
 namespace Simple;
 
 class Query
@@ -11,6 +10,8 @@ class Query
     public $arrangements = [];
     public $bindParameters = [];
     public $limit = [];
+    public $hash = [];
+
     public $types = [
         'default' => 's',
         'integer' => 'i',
@@ -359,6 +360,19 @@ class Query
                 $this->makeLimit()
             )
         );
+    }
+
+    public function hashCode($type = 'SELECT')
+    {
+        $type = strtoupper($type);
+        $hash = [
+            crc32($this->makeTable($this->from)),
+            crc32($type)
+        ];
+        foreach () {
+            
+        }
+
     }
 
     public function sqlDelete()
