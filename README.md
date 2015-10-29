@@ -1,7 +1,17 @@
 # Simple SQL Builder
 
+Master - stable version:
+![Travis-ci](https://travis-ci.org/stvkoch/simple-query.svg?branch=master)
+
+Develop - unstable version
 ![Travis-ci](https://travis-ci.org/stvkoch/simple-query.svg)
 
+Road map:
+
+    - calculate query hashCode independ of insertion order. For this change array to splheap
+
+
+Index of README
 
 - Simple SELECT query
 - Model
