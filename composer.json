@@ -2,7 +2,7 @@
     "name": "stvkoch/simple-query",
     "description": "Simple but powerfull query builder. Secury support subquery conditions.  See test folder to discovery how it's easy.",
     "require": {
-        "php": "5.4"
+        "php": "^5.4"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.0"
