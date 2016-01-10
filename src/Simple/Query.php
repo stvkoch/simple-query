@@ -3,6 +3,7 @@ namespace Simple;
 
 class Query
 {
+    public $bornTobe = 'Select';
     public $from = null;
     public $fields = [];
     public $joins = [];
@@ -21,9 +22,10 @@ class Query
      * Create instance of query using optional model
      * @param \Simple\Model $model ($optional)
      */
-    public function __construct($model = null)
+    public function __construct($model = null, $bornToBe = 'Select')
     {
         $this->from = $model;
+        $this->bornToBe = $bornToBe;
     }
 
     /**
@@ -561,6 +563,11 @@ class Query
     protected function hasHavingConditions()
     {
         return (boolean) count($this->havingConditions);
+    }
+    
+    public function __toString()
+    {
+        return call_user_func([$this, 'sql'.$this->bornToBe]);
     }
 
 }
