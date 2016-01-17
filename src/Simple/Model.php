@@ -1,6 +1,8 @@
 <?php
 namespace Simple;
 
+use Lead\Inflector\Inflector;
+
 class Model
 {
 
@@ -17,6 +19,7 @@ class Model
         if (isset($options['alias']) && $options['alias']) {
             $this->alias = $options['alias'];
         }
+        $this->pk .= ucfirst(Inflector::singularize($this->table));
         if (isset($options['pk']) && $options['pk']) {
             $this->pk = $options['pk'];
         }

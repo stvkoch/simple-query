@@ -3,7 +3,7 @@ namespace Simple;
 
 class Query
 {
-    public $bornTobe = 'Select';
+    public $bornTobe = 'select';
     public $from = null;
     public $fields = [];
     public $joins = [];
@@ -13,19 +13,43 @@ class Query
     public $bindParameters = [];
     public $limit = [];
     public $types = [
-        'default' => 's',
-        'integer' => 'i',
-        'double'  => 'd'
+        'default' => \PDO::PARAM_STR,
+        'integer' => \PDO::PARAM_INT,
+        'double'  => \PDO::PARAM_INT,
+        'null'    => \PDO::PARAM_NULL
     ];
 
     /**
      * Create instance of query using optional model
      * @param \Simple\Model $model ($optional)
      */
-    public function __construct($model = null, $bornToBe = 'Select')
+    public function __construct($model = null, $bornToBe = 'select')
     {
         $this->from = $model;
-        $this->bornToBe = $bornToBe;
+        $this->bornToBe = strtolower($bornToBe);
+    }
+
+
+    /*
+    * call apropriete method to build sql that born to be
+    */
+    public function sql()
+    {
+        if ($this->bornToBe === 'select') {
+            return $this->sqlSelect();
+        }
+        if ($this->bornToBe === 'count') {
+            return $this->sqlCount();
+        }
+        if ($this->bornToBe === 'update') {
+            return $this->sqlUpdate();
+        }
+        if ($this->bornToBe === 'insert') {
+            return $this->sqlInsert();
+        }
+        if ($this->bornToBe === 'delete') {
+            return $this->sqlDelete();
+        }
     }
 
     /**
@@ -268,12 +292,13 @@ class Query
      *
      * @return mixed
      */
-    public function bind($stmt)
+    public function bind(\PDOStatement $stmt)
     {
-        foreach ($this->bindParameters as $value) {
-            $stmt->bind_param(
-                $this->type($value),
-                $value
+        foreach ($this->bindParameters as $count => $value) {
+            $stmt->bindParam(
+                $count+1,
+                $value,
+                $this->type($value)
             );
         }
 
@@ -298,7 +323,8 @@ class Query
         if (isset($this->types[$type])) {
             return $this->types[$type];
         }
-        return $this->type['default'];
+
+        return $this->types['default'];
     }
 
 
@@ -481,10 +507,12 @@ class Query
             $partCondition = [];
             foreach ($functions as $func => $conditions) {
                 foreach ($conditions as $condition) {
+
                     if (!(isset($condition['field']) && isset($condition['value']))) {
                         $partCondition[] = sprintf('%s %s %s', $condition[0], $func, $condition[1]);
                         continue;
                     }
+
                     if (is_null($condition['value']) || $condition['value'] === 'NULL') {
                         if ($func === '=') {
                             $func = 'IS';
@@ -492,16 +520,26 @@ class Query
                         $partCondition[] = sprintf('%s %s NULL', $condition['field'], $func);
                         continue;
                     }
+
                     if ($func === 'RAW') {
                         $partCondition[] = $condition['field'];
                         $this->bindParameters = array_merge($this->bindParameters, $condition['value']);
                         continue;
                     }
-                    if (isset($condition['value']) && $condition['value'] instanceof self) {
+
+                    if ($condition['value'] instanceof self) {
                         $partCondition[] = sprintf('%s %s (%s)', $condition['field'], $func, $condition['value']->sqlSelect());
                         $this->bindParameters = array_merge($this->bindParameters, $condition['value']->bindParameters);
                         continue;
                     }
+
+                    if (is_array($condition['value'])) {
+                        $placeHolder = implode(', ', array_fill(0, count($condition['value']), '?'));
+                        $partCondition[] = sprintf('%s IN (%s)', $condition['field'], $placeHolder);
+                        $this->bindParameters = array_merge($this->bindParameters, $condition['value']);
+                        continue;
+                    }
+
                     $partCondition[] = sprintf('%s %s (?)', $condition['field'], $func);
                     $this->bindParameters[] = $condition['value'];
                 }

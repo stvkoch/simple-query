@@ -47,6 +47,7 @@ trait ModelMethods
      */
     public function fk($modelFk)
     {
+        return $this->field($modelFk->pk());
         return $this->field(
             $modelFk->pk().ucfirst($modelFk->table())
         );

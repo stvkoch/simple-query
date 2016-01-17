@@ -17,6 +17,17 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($incrementalQuery, $query->sqlSelect());
     }
 
+    public function testSqlSimpleInSelect()
+    {
+        $modelA = new \Simple\Model(['table'=>'superA']);
+        $incrementalQuery = 'SELECT superA.* FROM superA WHERE superA.test IN (?, ?, ?)';
+        $query = new \Simple\Query($modelA);
+        $query->select($modelA->field('*'));
+        $query->where($modelA->field('test'), array('test_1', 'test_2', 'test_3'));
+        $this->assertEquals($incrementalQuery, $query->sqlSelect());
+        $this->assertEquals(array('test_1', 'test_2', 'test_3'), $query->bindParameters);
+    }
+
     public function testSqlWhereSelect()
     {
         $modelA = new \Simple\Model(['table'=>'superA']);
