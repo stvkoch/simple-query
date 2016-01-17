@@ -20,8 +20,9 @@ abstract class Factory
      */
     public static function model($table, $alias = null, $pk = null)
     {
-        $model = new Model();
-        $model->table($table);
+        $model = new Model([
+            'table' => $table
+        ]);
         if ($alias) {
             $model->alias($alias);
         }
