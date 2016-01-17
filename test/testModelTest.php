@@ -57,7 +57,7 @@ class testModelTest extends PHPUnit_Framework_TestCase
         ]);
         $this->assertEquals($model->pk(), 'primaryA');
         $this->assertEquals($model->field('work'), 'superA.work');
-        $this->assertEquals($model->fk($modelB), 'superA.primaryBSuperB');
+        $this->assertEquals($model->fk($modelB), 'superA.primaryB');
     }
 }
 

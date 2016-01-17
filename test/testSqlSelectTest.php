@@ -107,7 +107,7 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
 
         $queryOrder = clone $queryJoin;
         $queryOrder->order($modelB->field($modelB->pk()));
-        $this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.idSuperA = B.idSuperA WHERE A.name = (?) AND A.age = (?) GROUP BY A.id ORDER BY B.idHiperB ASC', $queryOrder->sqlSelect());
+        $this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.idSuperA = B.idSuperA WHERE A.name = (?) AND A.age = (?) GROUP BY A.idSuperA ORDER BY B.idHiperB ASC', $queryOrder->sqlSelect());
 
         $queryJoin->join('left',
             (new \Simple\Query($modelC))->equal(
@@ -131,7 +131,7 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $modelB = new \Simple\Model(['table'=>'log',    'alias'=>'B']);
         $modelC = new \Simple\Model(['table'=>'megaC',  'alias'=>'C']);
 
-        $expectSql = 'SELECT A.* FROM superA AS A WHERE idSuperA IN (SELECT B.idSuperA FROM log AS B WHERE date BETWEEN (?) AND (?))';
+        $expectSql = 'SELECT A.* FROM superA AS A WHERE A.idSuperA IN (SELECT B.idSuperA FROM log AS B WHERE date BETWEEN (?) AND (?))';
 
         $query = new \Simple\Query($modelA);
         $query->select($modelA->field('*'));
@@ -140,7 +140,7 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
                 ->select($modelB->fk($modelA))
                 ->where('date BETWEEN (?) AND (?)', [1, 2], 'RAW');
 
-        $query->where('id', $queryLogModelA, 'IN');
+        $query->where($modelA->field($modelA->pk()), $queryLogModelA, 'IN');
         $this->assertEquals($expectSql, $query->sqlSelect());
         $this->assertEquals(array(1,2), $query->bindParameters);
 
