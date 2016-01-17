@@ -120,7 +120,7 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $this->assertContains(1, $queryJoin->bindParameters);
         $this->assertContains(2, $queryJoin->bindParameters);
         $this->assertEquals(array(2,'John',1), $queryJoin->bindParameters);
-        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT A.idSuperA FROM superA AS A LEFT JOIN hiperB AS B ON A.idSuperA = B.idSuperA LEFT JOIN megaC AS C ON A.id = C.fk_id_table_A AND C.category = (?) WHERE A.name = (?) AND A.age = (?) GROUP BY A.idSuperA) AS _countersuperA', $queryJoin->sqlCountSelect());
+        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT A.idSuperA FROM superA AS A LEFT JOIN hiperB AS B ON A.idSuperA = B.idSuperA LEFT JOIN megaC AS C ON A.idSuperA = C.fk_id_table_A AND C.category = (?) WHERE A.name = (?) AND A.age = (?) GROUP BY A.idSuperA) AS _countersuperA', $queryJoin->sqlCountSelect());
 
     }
 
