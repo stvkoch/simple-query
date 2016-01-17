@@ -14,11 +14,11 @@ class testSqlDeleteTest extends PHPUnit_Framework_TestCase
 
         $query = (new \Simple\Query($model))->where($model->pk(), 1);
 
-        $sql = 'DELETE FROM superA WHERE id = (?)';
+        $sql = 'DELETE FROM superA WHERE idSuperA = (?)';
         $this->assertEquals($sql, $query->sqlDelete());
 
         $query->where($model->field('user'), 2);
-        $sql = 'DELETE FROM superA WHERE id = (?) AND superA.user = (?)';
+        $sql = 'DELETE FROM superA WHERE idSuperA = (?) AND superA.user = (?)';
         $this->assertEquals($sql, $query->sqlDelete());
 
         $this->assertEquals(array(1,2), $query->bindParameters);

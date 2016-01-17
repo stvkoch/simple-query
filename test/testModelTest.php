@@ -17,7 +17,7 @@ class testModelTest extends PHPUnit_Framework_TestCase
         ]);
         $this->assertEquals($model->alias(), 'AA');
         $this->assertEquals($model->table(), 'superA');
-        $this->assertEquals($model->pk(), 'id');
+        $this->assertEquals($model->pk(), 'idSuperA');
         $this->assertEquals($model->field('work'), 'AA.work');
     }
 
@@ -29,7 +29,7 @@ class testModelTest extends PHPUnit_Framework_TestCase
         ]);
         $this->assertEquals($model->alias(), 'megaA');
         $this->assertEquals($model->table(), 'megaA');
-        $this->assertEquals($model->pk(), 'id');
+        $this->assertEquals($model->pk(), 'idMegaA');
         $this->assertEquals($model->field('work'), 'megaA.work');
     }
 

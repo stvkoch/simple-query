@@ -42,7 +42,7 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
 
 
 
-        $this->assertEquals( 'SELECT COUNT(*) AS count FROM (SELECT superA.id FROM superA WHERE superA.name LIKE (?)) AS _countersuperA', $query->sqlCountSelect());
+        $this->assertEquals( 'SELECT COUNT(*) AS count FROM (SELECT superA.idSuperA FROM superA WHERE superA.name LIKE (?)) AS _countersuperA', $query->sqlCountSelect());
 
 
         $incrementalQuery = 'SELECT superA.* FROM superA WHERE superA.name LIKE (?) OR superA.surename LIKE (?)';
@@ -82,7 +82,7 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $queryPage->limit(0,150);
         $this->assertEquals('SELECT A.* FROM superA AS A LIMIT 0, 150', $queryPage->sqlSelect());
         
-        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT A.id FROM superA AS A) AS _countersuperA', $queryPage->sqlCountSelect());
+        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT A.idSuperA FROM superA AS A) AS _countersuperA', $queryPage->sqlCountSelect());
 
 
         $incrementalQuery .= ' WHERE A.name = (?)';
@@ -99,15 +99,15 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $this->assertContains(1, $query->bindParameters);
 
         $query->group();
-        $this->assertEquals('SELECT A.* FROM superA AS A WHERE A.name = (?) AND A.age = (?) GROUP BY A.id',$query->sqlSelect());
+        $this->assertEquals('SELECT A.* FROM superA AS A WHERE A.name = (?) AND A.age = (?) GROUP BY A.idSuperA',$query->sqlSelect());
 
         $queryJoin = clone $query;
         $queryJoin->join('left', $modelB);
-        $this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.id = B.idSuperA WHERE A.name = (?) AND A.age = (?) GROUP BY A.id',$queryJoin->sqlSelect());
+        $this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.idSuperA = B.idSuperA WHERE A.name = (?) AND A.age = (?) GROUP BY A.idSuperA',$queryJoin->sqlSelect());
 
         $queryOrder = clone $queryJoin;
         $queryOrder->order($modelB->field($modelB->pk()));
-        $this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.id = B.idSuperA WHERE A.name = (?) AND A.age = (?) GROUP BY A.id ORDER BY B.id ASC', $queryOrder->sqlSelect());
+        $this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.idSuperA = B.idSuperA WHERE A.name = (?) AND A.age = (?) GROUP BY A.id ORDER BY B.idHiperB ASC', $queryOrder->sqlSelect());
 
         $queryJoin->join('left',
             (new \Simple\Query($modelC))->equal(
@@ -115,16 +115,13 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
                 $modelC->field('fk_id_table_A')
             )->where($modelC->field('category'), 2)
         );
-        $this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.id = B.idSuperA LEFT JOIN megaC AS C ON A.id = C.fk_id_table_A AND C.category = (?) WHERE A.name = (?) AND A.age = (?) GROUP BY A.id',$queryJoin->sqlSelect());
+        $this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.idSuperA = B.idSuperA LEFT JOIN megaC AS C ON A.idSuperA = C.fk_id_table_A AND C.category = (?) WHERE A.name = (?) AND A.age = (?) GROUP BY A.idSuperA',$queryJoin->sqlSelect());
         $this->assertContains('John', $queryJoin->bindParameters);
         $this->assertContains(1, $queryJoin->bindParameters);
         $this->assertContains(2, $queryJoin->bindParameters);
         $this->assertEquals(array(2,'John',1), $queryJoin->bindParameters);
-        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT A.id FROM superA AS A LEFT JOIN hiperB AS B ON A.id = B.idSuperA LEFT JOIN megaC AS C ON A.id = C.fk_id_table_A AND C.category = (?) WHERE A.name = (?) AND A.age = (?) GROUP BY A.id) AS _countersuperA', $queryJoin->sqlCountSelect());
+        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT A.idSuperA FROM superA AS A LEFT JOIN hiperB AS B ON A.idSuperA = B.idSuperA LEFT JOIN megaC AS C ON A.id = C.fk_id_table_A AND C.category = (?) WHERE A.name = (?) AND A.age = (?) GROUP BY A.idSuperA) AS _countersuperA', $queryJoin->sqlCountSelect());
 
-        //$this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.id = B.idSuperA LEFT JOIN megaC AS C ON A.id = C.fk_id_table_A WHERE A.name = (?) AND A.age = (?) GROUP BY A.id',$queryJoin->sqlSelect());
-
-        //$this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.id=B.idSuperA',$query->sqlSelect());
     }
 
 
@@ -134,7 +131,7 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $modelB = new \Simple\Model(['table'=>'log',    'alias'=>'B']);
         $modelC = new \Simple\Model(['table'=>'megaC',  'alias'=>'C']);
 
-        $expectSql = 'SELECT A.* FROM superA AS A WHERE id IN (SELECT B.idSuperA FROM log AS B WHERE date BETWEEN (?) AND (?))';
+        $expectSql = 'SELECT A.* FROM superA AS A WHERE idSuperA IN (SELECT B.idSuperA FROM log AS B WHERE date BETWEEN (?) AND (?))';
 
         $query = new \Simple\Query($modelA);
         $query->select($modelA->field('*'));

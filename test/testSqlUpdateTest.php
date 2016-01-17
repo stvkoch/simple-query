@@ -18,7 +18,7 @@ class testSqlUpdateTest extends PHPUnit_Framework_TestCase
             ->field($model->field('password'), 'hello_world')
             ->where($model->pk(), 1);
 
-        $sql = 'UPDATE superA SET (superA.username = (?), superA.password = (?)) WHERE id = (?)';
+        $sql = 'UPDATE superA SET (superA.username = (?), superA.password = (?)) WHERE idSuperA = (?)';
         $this->assertEquals($sql, $query->sqlUpdate());
 
         $this->assertEquals(array('John', 'hello_world', 1), $query->bindParameters);

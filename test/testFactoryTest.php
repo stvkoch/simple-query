@@ -29,7 +29,7 @@ class TestFactoryTest extends \PHPUnit_Framework_TestCase
         $query->where($modelA->field('name'), 'joh%', 'LIKE');
         $incrementalQuery = 'SELECT superA.* FROM superA WHERE superA.name LIKE (?)';
         $this->assertEquals($incrementalQuery, $query->sqlSelect());
-        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT superA.id FROM superA WHERE superA.name LIKE (?)) AS _countersuperA', $query->sqlCountSelect());
+        $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT superA.idSuperA FROM superA WHERE superA.name LIKE (?)) AS _countersuperA', $query->sqlCountSelect());
         $incrementalQuery = 'SELECT superA.* FROM superA WHERE superA.name LIKE (?) OR superA.surename LIKE (?)';
         $query->where($modelA->field('surename'), 'helo%', 'LIKE', 'OR');
         $this->assertEquals($incrementalQuery, $query->sqlSelect());
@@ -48,7 +48,7 @@ class TestFactoryTest extends \PHPUnit_Framework_TestCase
 
 
         $query->join('left', $queryJoin);
-        $this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.id = B.idSuperA AND B.name = (?)', $query->sqlSelect());
+        $this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.idSuperA = B.idSuperA AND B.name = (?)', $query->sqlSelect());
     }
 
 
@@ -65,6 +65,6 @@ class TestFactoryTest extends \PHPUnit_Framework_TestCase
         $query->select($modelA->field('*'));
 
         $query->join('left', $queryJoin);
-        $this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.id = B.idSuperA AND B.name = (?)', $query->sqlSelect());
+        $this->assertEquals('SELECT A.* FROM superA AS A LEFT JOIN hiperB AS B ON A.idSuperA = B.idSuperA AND B.name = (?)', $query->sqlSelect());
     }
 }
