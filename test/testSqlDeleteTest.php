@@ -3,7 +3,7 @@ include_once __DIR__. '/../src/Simple/Traits/ModelProprieties.php';
 include_once __DIR__. '/../src/Simple/Traits/ModelMethods.php';
 include_once __DIR__.'/../src/Simple/Model.php';
 include_once __DIR__.'/../src/Simple/Query.php';
-include_once __DIR__.'/../src/vendor/autoload.php';
+include_once __DIR__.'/../vendor/autoload.php';
 
 
 class testSqlDeleteTest extends PHPUnit_Framework_TestCase

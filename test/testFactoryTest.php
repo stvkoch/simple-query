@@ -6,7 +6,7 @@ include_once __DIR__. '/../src/Simple/Traits/ModelMethods.php';
 include_once __DIR__.'/../src/Simple/Model.php';
 include_once __DIR__.'/../src/Simple/Query.php';
 include_once __DIR__.'/../src/Simple/Factory.php';
-include_once __DIR__.'/../src/vendor/autoload.php';
+include_once __DIR__.'/../vendor/autoload.php';
 
 class TestFactoryTest extends \PHPUnit_Framework_TestCase
 {
