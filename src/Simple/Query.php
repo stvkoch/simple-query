@@ -295,7 +295,7 @@ class Query
     public function bind(\PDOStatement $stmt)
     {
         foreach ($this->bindParameters as $count => $value) {
-            $stmt->bindParam(
+            $stmt->bindValue(
                 $count+1,
                 $value,
                 $this->type($value)
