@@ -22,5 +22,15 @@ class testSqlInsertTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(array('John', 'hello_world'), $query->bindParameters);
     }
+    public function testSqlInsertToString()
+    {
+        $model = new \Simple\Model(['table'=>'superA']);
+        $query = (new \Simple\Query($model, 'insert'))
+            ->field($model->field('username'), 'John')
+            ->field($model->field('password'), 'hello_world');
+        $sql = 'INSERT superA (superA.username, superA.password) VALUES ((?), (?))';
+        $this->assertEquals($sql, "$query");
+        $this->assertEquals(array('John', 'hello_world'), $query->bindParameters);
+    }
 }
 
