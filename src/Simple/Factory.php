@@ -38,7 +38,7 @@ abstract class Factory
      * Manufactory for you and
      * return a query from model.
      */
-    public static function select($model, $alias = null, $pk = null)
+    public static function query($model, $alias = null, $pk = null)
     {
         $model = self::getModel($model, $alias, $pk);
         $query = new Query($model, 'select');
