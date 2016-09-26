@@ -23,5 +23,17 @@ class testSqlDeleteTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(array(1,2), $query->bindParameters);
     }
+    
+    public function testSqlDeleteToString()
+    {
+        $model = new \Simple\Model(['table'=>'superA']);
+        $query = (new \Simple\Query($model, 'delete'))->where($model->pk(), 1);
+        $sql = 'DELETE FROM superA WHERE idSuperA = (?)';
+        $this->assertEquals($sql, $query->sqlDelete());
+        $query->where($model->field('user'), 2);
+        $sql = 'DELETE FROM superA WHERE idSuperA = (?) AND superA.user = (?)';
+        $this->assertEquals($sql, "$query");
+        $this->assertEquals(array(1,2), $query->bindParameters);
+    }
 }
 
