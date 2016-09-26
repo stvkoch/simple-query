@@ -3,7 +3,7 @@ namespace Simple;
 
 class Query
 {
-    public $bornTobe = 'select';
+    public $bornTobe = 'Select';
     public $from = null;
     public $fields = [];
     public $joins = [];
@@ -23,10 +23,10 @@ class Query
      * Create instance of query using optional model
      * @param \Simple\Model $model ($optional)
      */
-    public function __construct($model = null, $bornToBe = 'select')
+    public function __construct($model = null, $bornToBe = 'Select')
     {
         $this->from = $model;
-        $this->bornToBe = strtolower($bornToBe);
+        $this->bornToBe = ucfirst(strtolower($bornToBe));
     }
 
 
@@ -35,19 +35,19 @@ class Query
     */
     public function sql()
     {
-        if ($this->bornToBe === 'select') {
+        if ($this->bornToBe === 'Select') {
             return $this->sqlSelect();
         }
-        if ($this->bornToBe === 'count') {
+        if ($this->bornToBe === 'Count') {
             return $this->sqlCount();
         }
-        if ($this->bornToBe === 'update') {
+        if ($this->bornToBe === 'Update') {
             return $this->sqlUpdate();
         }
-        if ($this->bornToBe === 'insert') {
+        if ($this->bornToBe === 'Insert') {
             return $this->sqlInsert();
         }
-        if ($this->bornToBe === 'delete') {
+        if ($this->bornToBe === 'Delete') {
             return $this->sqlDelete();
         }
     }
