@@ -23,5 +23,19 @@ class testSqlUpdateTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(array('John', 'hello_world', 1), $query->bindParameters);
     }
+    public function testSqlUpdateToString()
+    {
+        $model = new \Simple\Model(['table'=>'superA']);
+
+        $query = (new \Simple\Query($model, "update"))
+            ->field($model->field('username'), 'John')
+            ->field($model->field('password'), 'hello_world')
+            ->where($model->pk(), 1);
+
+        $sql = 'UPDATE superA SET (superA.username = (?), superA.password = (?)) WHERE idSuperA = (?)';
+        $this->assertEquals($sql, "$query");
+
+        $this->assertEquals(array('John', 'hello_world', 1), $query->bindParameters);
+    }
 }
 
