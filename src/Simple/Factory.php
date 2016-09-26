@@ -38,13 +38,49 @@ abstract class Factory
      * Manufactory for you and
      * return a query from model.
      */
-    public static function query($model, $alias = null, $pk = null)
+    public static function select($model, $alias = null, $pk = null)
     {
         $model = self::getModel($model, $alias, $pk);
-        $query = new Query($model);
+        $query = new Query($model, 'select');
         return $query;
     }
 
+    
+    /**
+     * Manufactory for you and
+     * return a query from model.
+     */
+    public static function update($model, $alias = null, $pk = null)
+    {
+        $model = self::getModel($model, $alias, $pk);
+        $query = new Query($model, 'update');
+        return $query;
+    }
+    
+    /**
+     * Manufactory for you and
+     * return a query from model.
+     */
+    public static function insert($model, $alias = null, $pk = null)
+    {
+        $model = self::getModel($model, $alias, $pk);
+        $query = new Query($model, 'insert');
+        return $query;
+    }
+    
+        
+    /**
+     * Manufactory for you and
+     * return a query from model.
+     */
+    public static function delete($model, $alias = null, $pk = null)
+    {
+        $model = self::getModel($model, $alias, $pk);
+        $query = new Query($model, 'delete');
+        return $query;
+    }
+    
+    
     /**
      * Example, get all user are customer.
      *
