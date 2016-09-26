@@ -18,6 +18,15 @@ class TestFactoryTest extends \PHPUnit_Framework_TestCase
         $query->select($modelA->field('*'));
         $this->assertEquals($incrementalQuery, $query->sqlSelect());
     }
+    
+        public function testToString()
+    {
+        $modelA = \Simple\Factory::model('superA');
+        $incrementalQuery = 'SELECT superA.* FROM superA';
+        $query = new \Simple\Query($modelA);
+        $query->select($modelA->field('*'));
+        $this->assertEquals($incrementalQuery, "$query");
+    }
 
     public function testQuerySelect()
     {
