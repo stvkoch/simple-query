@@ -18,12 +18,14 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($incrementalQuery, $query->sqlSelect());
     }
 
-    public function testSqlSimpleInSelect()
+
+    public function testSqlSimpleInSelectWithQueryFunction()
     {
         $modelA = new \Simple\Model(['table'=>'superA']);
         $incrementalQuery = 'SELECT superA.* FROM superA WHERE superA.test IN (?, ?, ?)';
-        $query = new \Simple\Query($modelA);
-        $query->select($modelA->field('*'));
+        $query = $modelA->query('*');
+        $this->assertInstanceOf(\Simple\Query::class, $query);
+
         $query->where($modelA->field('test'), array('test_1', 'test_2', 'test_3'));
         $this->assertEquals($incrementalQuery, $query->sqlSelect());
         $this->assertEquals(array('test_1', 'test_2', 'test_3'), $query->bindParameters);
@@ -81,7 +83,7 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
 
         $queryPage->limit(0,150);
         $this->assertEquals('SELECT A.* FROM superA AS A LIMIT 0, 150', $queryPage->sqlSelect());
-        
+
         $this->assertEquals('SELECT COUNT(*) AS count FROM (SELECT A.idSuperA FROM superA AS A) AS _countersuperA', $queryPage->sqlCountSelect());
 
 
@@ -161,4 +163,3 @@ class testSqlSelectTest extends PHPUnit_Framework_TestCase
 
 
 }
-

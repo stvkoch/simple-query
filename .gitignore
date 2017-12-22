@@ -1,3 +1,5 @@
 .ctags
 .vim.local
 .vimrc.local
+vendor
+composer.lock

@@ -24,4 +24,13 @@ class Model
             $this->pk = $options['pk'];
         }
     }
+
+
+    public function query($field = null) {
+      $query = new \Simple\Query($this);
+      if (!is_null($field)) {
+        $query->select($this->field($field));
+      }
+      return $query;
+    }
 }
